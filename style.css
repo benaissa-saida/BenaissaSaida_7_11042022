@@ -70,6 +70,10 @@ button p {
 
 /*HEADER*/
 
+.search__icon{
+  cursor: pointer;
+}
+
 /*CONTAINER*/
 .container-lg {
   padding: 0 !important;
@@ -77,13 +81,26 @@ button p {
 .card-width {
   width: 380px;
 }
-.recipes{
- margin-top: 8em;
+.recipes {
+  margin-top: 8em;
 }
 
-.recipes__picture{
-    object-fit: cover;
-    height: 178px;
+.recipes__picture {
+  object-fit: cover;
+  height: 178px;
+}
+
+.card__footer {
+  max-height: 186px;
+}
+.card__footer--description {
+  text-align: justify;
+  overflow: hidden;
+  text-overflow: clip ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  height: 170px;
 }
 /*DISPLAY*/
 .none {
