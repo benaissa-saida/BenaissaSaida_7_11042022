@@ -5,6 +5,12 @@
 .bg-blue {
   background-color: #3282f7;
 }
+.bg-green{
+  background-color: #68D9A4;
+}
+.bg-red{
+  background-color: #ED6454;
+}
 .white {
   color: #fff !important;
 }
@@ -46,6 +52,9 @@ body {
   box-shadow: none !important;
 }
 
+.arrowUp{
+  cursor: pointer;
+}
 /*BUTTONS*/
 .btn-tag {
   height: 37px;
@@ -64,7 +73,6 @@ button p {
   height: 69px;
   width: 170px;
   border-radius: 5px;
-  background: #3282f7;
   border: none;
 }
 

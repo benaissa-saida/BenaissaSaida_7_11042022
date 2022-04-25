@@ -17,7 +17,7 @@ function cardFactory(data) {
     const article = document.querySelector(".cards__container");
     article.innerHTML += `
         <div class="col">
-            <div class="card">
+            <div class="card cardTest">
                 <img
                 class="card-img-top bg-silver recipes__picture rounded-top"
                 />

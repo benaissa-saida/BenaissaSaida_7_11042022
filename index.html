@@ -84,35 +84,11 @@
           </svg>
         </button>
       </div>
-      <div class="d-flex pt-3 align-items-start justify-content-start z-up">
-        <button class="flex justify-content-around align-items-center btn-sort">
-          <p class="fw-bold fs-5">Ingrédients</p>
-          <span class="input-group-text fs-2">
-            <svg
-              width="16"
-              height="11"
-              viewBox="0 0 16 11"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M14.12 0.453369L8 6.56004L1.88 0.453369L0 2.33337L8 10.3334L16 2.33337L14.12 0.453369Z"
-                fill="white"
-              />
-            </svg>
-          </span>
-        </button>
-        <div class="w-50 bg-blue rounded p-2 none">
-          <div
-            class="flex justify-content-around align-items-center input-group flex-nowrap"
-          >
-            <input
-              id="sort-input"
-              class="form-control white fs-5"
-              type="search"
-              placeholder="Rechercher un ingrédient"
-            />
-            <span class="input-group-text fs-2">
+      <div class="d-flex position-relative">
+        <div class="pt-3 me-4">
+          <button class="flex justify-content-around align-items-center btn-sort bg-blue toggle" id="toggle-ingredient" aria-expanded="false">
+            <p class="fw-bold fs-5">Ingrédients</p>
+            <span class="input-group-text fs-2 arrowDown">
               <svg
                 width="16"
                 height="11"
@@ -121,55 +97,137 @@
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M1.88 10.5466L8 4.43996L14.12 10.5466L16 8.66663L8 0.66663L1.64355e-07 8.66663L1.88 10.5466Z"
+                  d="M14.12 0.453369L8 6.56004L1.88 0.453369L0 2.33337L8 10.3334L16 2.33337L14.12 0.453369Z"
                   fill="white"
                 />
               </svg>
             </span>
+          </button>
+          <div class="bg-blue rounded p-2 none" id="input-ingredient">
+            <div
+              class="flex justify-content-around align-items-center input-group flex-nowrap"
+            >
+              <input
+                id="sort-input"
+                class="form-control white fs-5"
+                type="search"
+                placeholder="Rechercher un ingrédient"
+              />
+              <span class="input-group-text fs-2 arrowUp">
+                <svg
+                  width="16"
+                  height="11"
+                  viewBox="0 0 16 11"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.88 10.5466L8 4.43996L14.12 10.5466L16 8.66663L8 0.66663L1.64355e-07 8.66663L1.88 10.5466Z"
+                    fill="white"
+                  />
+                </svg>
+              </span>
+            </div>
+            <ul class="list-unstyled white row row-cols-3 ms-1 white">
+              <!--Dynamic list-->
+            </ul>
           </div>
-          <ul class="list-unstyled white row row-cols-3 ms-1 white">
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-            <li>COCO</li>
-          </ul>
+        </div>
+        <div class="pt-3 me-4">
+          <button class="flex justify-content-around align-items-center btn-sort bg-green" id="toggle-appareil" aria-expanded="false">
+            <p class="fw-bold fs-5">Appareils</p>
+            <span class="input-group-text fs-2 arrowDown">
+              <svg
+                width="16"
+                height="11"
+                viewBox="0 0 16 11"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M14.12 0.453369L8 6.56004L1.88 0.453369L0 2.33337L8 10.3334L16 2.33337L14.12 0.453369Z"
+                  fill="white"
+                />
+              </svg>
+            </span>
+          </button>
+          <div class="bg-green rounded p-2 none" id="input-appareil">
+            <div
+              class="flex justify-content-around align-items-center input-group flex-nowrap"
+            >
+              <input
+                id="sort-input"
+                class="form-control white fs-5"
+                type="search"
+                placeholder="Rechercher un appareil"
+              />
+              <span class="input-group-text fs-2 arrowUp">
+                <svg
+                  width="16"
+                  height="11"
+                  viewBox="0 0 16 11"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.88 10.5466L8 4.43996L14.12 10.5466L16 8.66663L8 0.66663L1.64355e-07 8.66663L1.88 10.5466Z"
+                    fill="white"
+                  />
+                </svg>
+              </span>
+            </div>
+            <ul class="list-unstyled white row row-cols-3 ms-1 white">
+              <!--Dynamic list-->
+            </ul>
+          </div>
+        </div>
+        <div class="pt-3">
+          <button class="flex justify-content-around align-items-center btn-sort bg-red" id="toggle-ustensil" aria-expanded="false">
+            <p class="fw-bold fs-5">Ustensils</p>
+            <span class="input-group-text fs-2 arrowDown">
+              <svg
+                width="16"
+                height="11"
+                viewBox="0 0 16 11"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M14.12 0.453369L8 6.56004L1.88 0.453369L0 2.33337L8 10.3334L16 2.33337L14.12 0.453369Z"
+                  fill="white"
+                />
+              </svg>
+            </span>
+          </button>
+          <div class="bg-red rounded p-2 none" id="input-ustensil">
+            <div
+              class="flex justify-content-around align-items-center input-group flex-nowrap"
+            >
+              <input
+                id="sort-input"
+                class="form-control white fs-5"
+                type="search"
+                placeholder="Rechercher un ustensils"
+              />
+              <span class="input-group-text fs-2 arrowUp">
+                <svg
+                  width="16"
+                  height="11"
+                  viewBox="0 0 16 11"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.88 10.5466L8 4.43996L14.12 10.5466L16 8.66663L8 0.66663L1.64355e-07 8.66663L1.88 10.5466Z"
+                    fill="white"
+                  />
+                </svg>
+              </span>
+            </div>
+            <ul class="list-unstyled white row row-cols-3 ms-1 white">
+              <!--Dynamic list-->
+            </ul>
+          </div>
         </div>
       </div>
       <main class="recipes">
@@ -188,6 +246,7 @@
     <script src="scripts/pages/index.js"></script>
     <!--Utils-->
     <script src="scripts/utils/showError.js"></script>
+    <script src="scripts/utils/dropdown.js"></script>
     <!--Script pour bootstrap-->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
