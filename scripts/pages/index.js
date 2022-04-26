@@ -7,6 +7,8 @@ async function displayRecipes(recipes) {
     // cards.appendChild(allRecipes)
   });
 }
+
+
 //fonction d'init pour initialiser toutes nos fonctions
 async function init() {
   // Récupère les datas du photographe
@@ -14,6 +16,9 @@ async function init() {
   const recipes = await api.get();
 
   displayRecipes(recipes);
+  displayIngredients(recipes);
+  displayAppareils(recipes);
+  displayUstensils(recipes);
   // showMessageError()
 }
 

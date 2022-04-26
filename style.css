@@ -21,7 +21,7 @@
   color: #000 !important;
   opacity: 0.25 !important;
 }
-#sort-input::-webkit-input-placeholder {
+.sort-input::-webkit-input-placeholder {
   color: #fff !important;
   opacity: 0.5 !important;
 }
