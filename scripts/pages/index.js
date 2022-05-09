@@ -19,6 +19,7 @@ async function init() {
   displayIngredients(recipes);
   displayAppareils(recipes);
   displayUstensils(recipes);
+  displayTagAfterClickLi();
   // showMessageError()
 }
 

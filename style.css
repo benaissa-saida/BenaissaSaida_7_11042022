@@ -5,11 +5,11 @@
 .bg-blue {
   background-color: #3282f7;
 }
-.bg-green{
-  background-color: #68D9A4;
+.bg-green {
+  background-color: #68d9a4;
 }
-.bg-red{
-  background-color: #ED6454;
+.bg-red {
+  background-color: #ed6454;
 }
 .white {
   color: #fff !important;
@@ -52,14 +52,13 @@ body {
   box-shadow: none !important;
 }
 
-.arrowUp{
+.arrowUp {
   cursor: pointer;
 }
 /*BUTTONS*/
 .btn-tag {
-  height: 37px;
-  width: 107px;
-  background: #3282f7;
+  height: 47px;
+  width: 147px;
   border-radius: 5px;
   border: none;
 }
@@ -78,7 +77,7 @@ button p {
 
 /*HEADER*/
 
-.search__icon{
+.search__icon {
   cursor: pointer;
 }
 
@@ -122,4 +121,25 @@ button p {
 .z-up {
   position: absolute;
   z-index: 9;
+}
+
+/*List of ingredients, ustensils, appareils*/
+
+.list {
+  cursor: pointer;
+}
+.list:hover {
+  transform: scale(1.1) translate(10px);
+  transition: 200ms;
+  overflow: unset;
+  white-space: unset;
+}
+
+/*tags*/
+
+.tag-text{
+  max-width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
