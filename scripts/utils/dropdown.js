@@ -116,14 +116,12 @@ function displayTagAfterClickLi() {
       e.preventDefault();
       function btnInTag(nameOfParent, color) {
         if (parentOfTag.includes(nameOfParent)) {
-          tagsContainerSelected.insertAdjacentHTML(
-            "afterbegin",
+          tagsContainerSelected.innerHTML +=
             `<button class="d-flex justify-content-around align-items-center btn-tag ${color} me-2">
-        <p class='tag-text'>${e.target.innerHTML}</p>
-        <img src="assets/close.svg" class="cross-tag" alt="Supprimer le tag"/>
-      </button>`
-          );
-          // document.querySelector(".btn-tag").style.backgroundColor = color;
+              <p class='tag-text'>${e.target.innerHTML}</p>
+              <img src="assets/close.svg" class="cross-tag" alt="Supprimer le tag"/>
+            </button>`
+          ;
           arrayOfCrossTags.push(document.querySelector(".cross-tag"));
         }
       }
