@@ -16,8 +16,7 @@ function cardFactory(data) {
   function getRecipesCardDOM(ingredientsInfo) {
     const article = document.querySelector(".cards__container");
     article.innerHTML += `
-        <div class="col">
-            <div class="card">
+            <div class="card p-0 card-width">
                 <img
                 class="card-img-top bg-silver recipes__picture rounded-top"
                 />
@@ -55,32 +54,31 @@ function cardFactory(data) {
                         </p>
                     </div>
                 </div>
-            </div>
-        </div>`;
+            </div>`;
   }
 
-    function ingredientOnly(ingredient){
-      return `<li><span class="fw-bold">${ingredient.ingredient}</span></li>`
-    }
+  function ingredientOnly(ingredient) {
+    return `<li><span class="fw-bold">${ingredient.ingredient}</span></li>`;
+  }
 
-    function ingredientWithQuantity(ingredient){
-      return `<li><span class="fw-bold">${ingredient.ingredient}</span>: ${ingredient.quantity}</li>`
-    }
+  function ingredientWithQuantity(ingredient) {
+    return `<li><span class="fw-bold">${ingredient.ingredient}</span>: ${ingredient.quantity}</li>`;
+  }
 
-    function ingredientWithQuantityAndUnit(ingredient){
-      return `<li><span class="fw-bold">${ingredient.ingredient}</span>: ${ingredient.quantity} ${ingredient.unit}</li>`
-    }
+  function ingredientWithQuantityAndUnit(ingredient) {
+    return `<li><span class="fw-bold">${ingredient.ingredient}</span>: ${ingredient.quantity} ${ingredient.unit}</li>`;
+  }
 
   //fonction pour avoir les infos d'un ingrédient
   function getAllRecipes() {
     let ingredientsInfo = "";
     ingredients.forEach((ingredient) => {
       if (ingredient.quantity && ingredient.unit) {
-        ingredientsInfo += ingredientWithQuantityAndUnit(ingredient)
+        ingredientsInfo += ingredientWithQuantityAndUnit(ingredient);
       } else if (ingredient.quantity) {
-        ingredientsInfo += ingredientWithQuantity(ingredient)
+        ingredientsInfo += ingredientWithQuantity(ingredient);
       } else {
-        ingredientsInfo += ingredientOnly(ingredient)
+        ingredientsInfo += ingredientOnly(ingredient);
       }
     });
     return getRecipesCardDOM(ingredientsInfo);

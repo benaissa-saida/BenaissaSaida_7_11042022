@@ -20,7 +20,7 @@
     />
     <title>Les petits plats</title>
   </head>
-  <body class="container-fluid p-5">
+  <body class="container-fluid body-minWidth">
     <header class="d-flex align-items-center justify-content-center">
       <a href="/index.html" alt="Les petits plats homepage" title="logo">
         <svg
@@ -66,9 +66,13 @@
         </svg>
       </nav>
       <div class="selected-tag d-flex"></div>
-      <div class="d-flex z-up">
+      <div class="z-up d-flex flex-wrap">
         <div class="pt-3 me-4" id="container-ingredient">
-          <button class="flex justify-content-around align-items-center btn-sort bg-blue" id="toggle-ingredient" aria-expanded="false">
+          <button
+            class="flex justify-content-around align-items-center btn-sort bg-blue"
+            id="toggle-ingredient"
+            aria-expanded="false"
+          >
             <p class="fw-bold fs-5">Ingrédients</p>
             <span class="input-group-text fs-2 arrowDown">
               <svg
@@ -94,7 +98,10 @@
                 type="search"
                 placeholder="Rechercher un ingrédient"
               />
-              <span class="input-group-text fs-2 arrowUp" id="arrowUp-ingredient">
+              <span
+                class="input-group-text fs-2 arrowUp"
+                id="arrowUp-ingredient"
+              >
                 <svg
                   width="16"
                   height="11"
@@ -109,13 +116,20 @@
                 </svg>
               </span>
             </div>
-            <ul class="list-unstyled white row row-cols-3 ms-1 white" id="ingredients-list">
+            <ul
+              class="list-unstyled white row row-cols-3 ms-1 white h-75 overflow-auto"
+              id="ingredients-list"
+            >
               <!--Dynamic list-->
             </ul>
           </div>
         </div>
         <div class="pt-3 me-4" id="container-appareil">
-          <button class="flex justify-content-around align-items-center btn-sort bg-green" id="toggle-appareil" aria-expanded="false">
+          <button
+            class="flex justify-content-around align-items-center btn-sort bg-green"
+            id="toggle-appareil"
+            aria-expanded="false"
+          >
             <p class="fw-bold fs-5">Appareils</p>
             <span class="input-group-text fs-2 arrowDown">
               <svg
@@ -156,13 +170,20 @@
                 </svg>
               </span>
             </div>
-            <ul class="list-unstyled white row row-cols-3 ms-1 white" id="appareils-list">
+            <ul
+              class="list-unstyled white row row-cols-3 ms-1 white"
+              id="appareils-list"
+            >
               <!--Dynamic list-->
             </ul>
           </div>
         </div>
         <div class="pt-3" id="container-ustensil">
-          <button class="flex justify-content-around align-items-center btn-sort bg-red" id="toggle-ustensil" aria-expanded="false">
+          <button
+            class="flex justify-content-around align-items-center btn-sort bg-red"
+            id="toggle-ustensil"
+            aria-expanded="false"
+          >
             <p class="fw-bold fs-5">Ustensils</p>
             <span class="input-group-text fs-2 arrowDown">
               <svg
@@ -203,16 +224,17 @@
                 </svg>
               </span>
             </div>
-            <ul class="list-unstyled white row row-cols-3 ms-1 white" id="ustensils-list">
+            <ul
+              class="list-unstyled white row row-cols-3 ms-1 white"
+              id="ustensils-list"
+            >
               <!--Dynamic list-->
             </ul>
           </div>
         </div>
       </div>
       <main class="recipes">
-        <div
-          class="row row-cols-sm-1 row-cols-lg-2 row-cols-xl-3 g-4 cards__container"
-        >
+        <div class="cards__container gap-5">
           <!-- recipes shows dynamiclly -->
         </div>
       </main>
@@ -225,6 +247,8 @@
     <script src="scripts/pages/index.js"></script>
     <!--Utils-->
     <script src="scripts/utils/showError.js"></script>
+    <script src="scripts/utils/utilsFunction.js"></script>
+    <script src="scripts/utils/sortLogique.js"></script>
     <script src="scripts/utils/dropdown.js"></script>
     <!--Script pour bootstrap-->
     <script

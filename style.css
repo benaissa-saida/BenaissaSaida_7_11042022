@@ -31,6 +31,10 @@
   max-height: 400px;
 }
 
+.p-0 {
+  padding: 0px;
+}
+
 /*FONT FAMILY*/
 body {
   font-family: "Lato", sans-serif !important;
@@ -85,8 +89,18 @@ button p {
 .container-lg {
   padding: 0 !important;
 }
+.cards__container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: stretch;
+}
 .card-width {
-  width: 380px;
+  width: 31%;
+  min-width: 300px !important;
+}
+.body-minWidth {
+  min-width: 300px;
 }
 .recipes {
   margin-top: 8em;
@@ -98,7 +112,7 @@ button p {
 }
 
 .card__footer {
-  max-height: 186px;
+  max-height: 200px;
 }
 .card__footer--description {
   text-align: justify;
@@ -129,7 +143,7 @@ button p {
   cursor: pointer;
 }
 .list:hover {
-  transform: scale(1.1) translate(10px);
+  transform: scale(1) translate(10px);
   transition: 200ms;
   overflow: unset;
   white-space: unset;
@@ -137,9 +151,32 @@ button p {
 
 /*tags*/
 
-.tag-text{
+.tag-text {
   max-width: 100px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+@media (max-width: 1499px) {
+  .cards__container {
+    justify-content: space-between;
+  }
+  .card-width {
+    width: 45%;
+    min-width: 300px !important;
+  }
+}
+
+@media (max-width: 865px) {
+  .card-width {
+    width: 100%;
+    min-width: 300px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .recipes{
+    margin-top: 20em;
+  }
 }

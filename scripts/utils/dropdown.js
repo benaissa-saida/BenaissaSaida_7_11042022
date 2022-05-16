@@ -68,7 +68,8 @@ function displayIngredients(recipes) {
   //Utilisation de la methode Set pour ne pas avoir de doublons.
   const listOfAllIngredients = [...new Set(listNotFiltered)];
   listOfAllIngredients.forEach((ingredient) => {
-    return (ingredientList.innerHTML += `<li class="text-truncate fs-5 list" title="${ingredient}">${ingredient}</li>`);
+    // une façon plus rapide et plus direct que le innerHtml
+    return ingredientList.insertAdjacentHTML('afterbegin', `<li class="text-truncate fs-5 list" title="${ingredient}">${ingredient}</li>`);
   });
 }
 
@@ -82,7 +83,8 @@ async function displayAppareils(recipes) {
   //Utilisation de la methode Set pour ne pas avoir de doublons.
   const listOfAllAppareils = [...new Set(listNotFiltered)];
   listOfAllAppareils.forEach((appliance) => {
-    return (appareilList.innerHTML += `<li class="text-truncate fs-5 list" title="${appliance}">${appliance}</li>`);
+    // une façon plus rapide et plus direct que le innerHtml
+    return appareilList.insertAdjacentHTML('afterbegin', `<li class="text-truncate fs-5 list" title="${appliance}">${appliance}</li>`);
   });
 }
 
@@ -98,46 +100,11 @@ async function displayUstensils(recipes) {
   //Utilisation de la methode Set pour ne pas avoir de doublons.
   const listOfAllUstensils = [...new Set(listNotFiltered)];
   listOfAllUstensils.forEach((ustensil) => {
-    return (ustensilList.innerHTML += `<li class="text-truncate fs-5 list" title="${ustensil}">${ustensil}</li>`);
+    // une façon plus rapide et plus direct que le innerHtml
+    return ustensilList.insertAdjacentHTML('afterbegin', `<li class="text-truncate fs-5 list" title="${ustensil}">${ustensil}</li>`);
   });
 }
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-function displayTagAfterClickLi() {
-  const arrayOfCrossTags = [];
-  const tagsContainerSelected = document.querySelector(".selected-tag");
-  const arrayOfItems = [...document.querySelectorAll(".list")];
-  arrayOfItems.forEach((item) => {
-    item.addEventListener("click", (e) => {
-      const parentOfTag = e.target.parentNode.id
-      e.preventDefault();
-      function btnInTag(nameOfParent, color) {
-        if (parentOfTag.includes(nameOfParent)) {
-          tagsContainerSelected.innerHTML +=
-            `<button class="d-flex justify-content-around align-items-center btn-tag ${color} me-2">
-              <p class='tag-text'>${e.target.innerHTML}</p>
-              <img src="assets/close.svg" class="cross-tag" alt="Supprimer le tag"/>
-            </button>`
-          ;
-          arrayOfCrossTags.push(document.querySelector(".cross-tag"));
-        }
-      }
-
-      btnInTag("ingredients", "bg-blue");
-      btnInTag("appareils", "bg-green");
-      btnInTag("ustensils", "bg-red");
-      closeTagAfterClickCross(arrayOfCrossTags);
-    });
-  });
-}
-
-function closeTagAfterClickCross(arrayOfCrossTags) {
-  arrayOfCrossTags.forEach((cross) => {
-    cross.addEventListener("click", (e) => {
-      e.target.parentNode.remove()
-    });
-  });
 }
