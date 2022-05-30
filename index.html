@@ -20,7 +20,7 @@
     />
     <title>Les petits plats</title>
   </head>
-  <body class="container-fluid body-minWidth">
+  <body>
     <header class="d-flex align-items-center justify-content-center">
       <a href="/index.html" alt="Les petits plats homepage" title="logo">
         <svg
@@ -43,7 +43,7 @@
         </svg>
       </a>
     </header>
-    <div class="p-5">
+    <main class="p-5">
       <nav class="mb-4 p-4 bg-gray input-group flex-nowrap">
         <input
           id="search-input"
@@ -66,11 +66,11 @@
         </svg>
       </nav>
       <div class="selected-tag d-flex"></div>
-      <div class="z-up d-flex flex-wrap">
-        <div class="pt-3 me-4" id="container-ingredient">
+      <div class="z-up d-flex flex-wrap flex-sm-nowrap">
+        <div class="pt-3 me-4" id="container-ingredients">
           <button
             class="flex justify-content-around align-items-center btn-sort bg-blue"
-            id="toggle-ingredient"
+            id="toggle-ingredients"
             aria-expanded="false"
           >
             <p class="fw-bold fs-5">Ingrédients</p>
@@ -89,18 +89,19 @@
               </svg>
             </span>
           </button>
-          <div class="bg-blue rounded p-2 none" id="input-ingredient">
+          <div class="bg-blue rounded p-2 none" id="input-ingredients">
             <div
               class="flex justify-content-around align-items-center input-group flex-nowrap"
             >
               <input
+                id="ingredients"
                 class="sort-input form-control white fs-5"
                 type="search"
                 placeholder="Rechercher un ingrédient"
               />
               <span
                 class="input-group-text fs-2 arrowUp"
-                id="arrowUp-ingredient"
+                id="arrowUp-ingredients"
               >
                 <svg
                   width="16"
@@ -124,10 +125,10 @@
             </ul>
           </div>
         </div>
-        <div class="pt-3 me-4" id="container-appareil">
+        <div class="pt-3 me-4" id="container-appareils">
           <button
             class="flex justify-content-around align-items-center btn-sort bg-green"
-            id="toggle-appareil"
+            id="toggle-appareils"
             aria-expanded="false"
           >
             <p class="fw-bold fs-5">Appareils</p>
@@ -146,16 +147,17 @@
               </svg>
             </span>
           </button>
-          <div class="bg-green rounded p-2 none" id="input-appareil">
+          <div class="bg-green rounded p-2 none" id="input-appareils">
             <div
               class="flex justify-content-around align-items-center input-group flex-nowrap"
             >
               <input
+                id="appareils"
                 class="sort-input form-control white fs-5"
                 type="search"
                 placeholder="Rechercher un appareil"
               />
-              <span class="input-group-text fs-2 arrowUp" id="arrowUp-appareil">
+              <span class="input-group-text fs-2 arrowUp" id="arrowUp-appareils">
                 <svg
                   width="16"
                   height="11"
@@ -178,10 +180,10 @@
             </ul>
           </div>
         </div>
-        <div class="pt-3" id="container-ustensil">
+        <div class="pt-3" id="container-ustensils">
           <button
             class="flex justify-content-around align-items-center btn-sort bg-red"
-            id="toggle-ustensil"
+            id="toggle-ustensils"
             aria-expanded="false"
           >
             <p class="fw-bold fs-5">Ustensils</p>
@@ -200,16 +202,17 @@
               </svg>
             </span>
           </button>
-          <div class="bg-red rounded p-2 none" id="input-ustensil">
+          <div class="bg-red rounded p-2 none" id="input-ustensils">
             <div
               class="flex justify-content-around align-items-center input-group flex-nowrap"
             >
               <input
+                id="ustensils"
                 class="sort-input form-control white fs-5"
                 type="search"
                 placeholder="Rechercher un ustensils"
               />
-              <span class="input-group-text fs-2 arrowUp" id="arrowUp-ustensil">
+              <span class="input-group-text fs-2 arrowUp" id="arrowUp-ustensils">
                 <svg
                   width="16"
                   height="11"
@@ -233,23 +236,22 @@
           </div>
         </div>
       </div>
-      <main class="recipes">
+      <article class="recipes">
         <div class="cards__container gap-5">
           <!-- recipes shows dynamiclly -->
         </div>
-      </main>
-    </div>
+      </article>
+    </main>
     <!--Api-->
     <script src="scripts/api/Api.js"></script>
     <!--Factories-->
     <script src="scripts/factorie/Cards.js"></script>
+    <!--Utils-->
+    <script src="scripts/utils/homeBuilder.js"></script>
+    <script src="scripts/utils/sortLogique.js"></script>
+    <script src="scripts/utils/utilsFunction.js"></script>
     <!--Page-->
     <script src="scripts/pages/index.js"></script>
-    <!--Utils-->
-    <script src="scripts/utils/showError.js"></script>
-    <script src="scripts/utils/utilsFunction.js"></script>
-    <script src="scripts/utils/sortLogique.js"></script>
-    <script src="scripts/utils/dropdown.js"></script>
     <!--Script pour bootstrap-->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

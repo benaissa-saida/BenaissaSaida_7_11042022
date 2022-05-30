@@ -13,9 +13,8 @@ function cardFactory(data) {
   } = data;
 
   //fonction de création d'une card recette
-  function getRecipesCardDOM(ingredientsInfo) {
-    const article = document.querySelector(".cards__container");
-    article.innerHTML += `
+  function getRecipesCardDOM() {
+    return`
             <div class="card p-0 card-width">
                 <img
                 class="card-img-top bg-silver recipes__picture rounded-top"
@@ -47,7 +46,7 @@ function cardFactory(data) {
                     </div>
                     <div class="row row-cols-2 pb-4 card__footer">
                         <ul class="list-unstyled">
-                            ${ingredientsInfo}
+                            ${getAllRecipes()}
                         </ul>
                         <p class="card__footer--description">
                         ${description}
@@ -81,7 +80,7 @@ function cardFactory(data) {
         ingredientsInfo += ingredientOnly(ingredient);
       }
     });
-    return getRecipesCardDOM(ingredientsInfo);
+    return ingredientsInfo;
   }
 
   //on retourne les fonctions afin de pouvoir la réutiliser
