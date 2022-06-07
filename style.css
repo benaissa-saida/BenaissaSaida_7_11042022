@@ -81,7 +81,7 @@ button p {
 
 /*HEADER*/
 
-.search__icon {
+#search-icon {
   cursor: pointer;
 }
 
@@ -141,6 +141,7 @@ button p {
 
 .list {
   cursor: pointer;
+  min-width: 180px !important;
 }
 .list:hover {
   transform: scale(1) translate(10px);

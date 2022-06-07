@@ -35,9 +35,9 @@ class HomeBuilder {
   render() {
     this._displayFiltersOptions(this.itemsFiltered);
     this._displayCards(this.recipesList);
+    this._searchWithInput();
     this._openDropdown();
-    // this._closeDropdownByClickingOutside();
-    this._closeDropdownByClickingInArrow()
+    this._closeDropdownByClickingInArrow();
   }
 
   _displayFiltersOptions(items) {
@@ -70,6 +70,21 @@ class HomeBuilder {
     const tagsContainerSelected = document.querySelector(".selected-tag");
     const liOfItems = [...document.querySelectorAll(".list")];
     let recipesToDisplay;
+    for (let filter of filters) {
+      const inputAboveLi = document.getElementById(`${filter}`);
+      inputAboveLi.oninput = () => {
+        let itemsList = {};
+        Object.assign(itemsList, this.itemsFiltered);
+
+        //Filtre l'objet pour que chaque item contenu dedans soit retrouvé grâce à la valeur de l'input
+        itemsList[filter] = itemsList[filter].filter((item) =>
+          normalizeValuesByRemovingAccents(item).startsWith(
+            normalizeValuesByRemovingAccents(inputAboveLi.value)
+          )
+        );
+        this._displayFiltersOptions(itemsList);
+      };
+    }
 
     liOfItems.forEach((item) => {
       item.addEventListener("click", (e) => {
@@ -140,15 +155,50 @@ class HomeBuilder {
   }
 
   _showMessageError(recipesToDisplay) {
-    const body = document.querySelector(".recipes");
+    const body = document.querySelector(".cards__container");
 
     const recipesQuantity = recipesToDisplay.recipes.length;
-    console.log(recipesQuantity == 0);
 
     if (recipesQuantity === 0) {
       return (body.innerHTML = `<h1 class="text-center">Oups</h1>
       <p class="text-center fs-4">Aucune recette ne correspond à votre critère… vous pouvez
       chercher « tarte aux pommes », « poisson », etc.</p>`);
+    }
+  }
+
+  _searchWithInput() {
+    let input = document.getElementById("search-input");
+    let searchIcon = document.getElementById("search-icon");
+
+    //ferme les tags pour avoir seulement l'input
+    input.onfocus = () => {
+      //faire en sorte que ça ne bloque pas le bouton lorsqu'elle est appelé.
+      this._closeDropDownNotActive();
+    };
+
+    input.oninput = () => {
+      let recipesToDisplay;
+      if(input.value.length >= 3){
+        recipesToDisplay = this.displayRecipes()
+        this._showMessageError(recipesToDisplay)
+      } else if(this.listOfTags.length > 0){
+        recipesToDisplay = this.recipesList.search({
+          input: '',
+          tags: this._userDemand.tags,
+        }, this.tableForRecipes)
+        this._showMessageError(recipesToDisplay)
+      } else {
+        recipesToDisplay = this.recipesList
+      }
+
+      //on affiche ensuite les tags qui sont seulements contenus dans nos recettes restantes
+      this._displayFiltersOptions(this.displayListOfTags(recipesToDisplay));
+      //avant d'afficher les cards
+      this._displayCards(recipesToDisplay);
+    }
+    searchIcon.onclick = (e) => {
+      e.preventDefault()
+      input.blur()
     }
   }
 
@@ -159,17 +209,15 @@ class HomeBuilder {
         const toggle = document.getElementById(`toggle-${filter}`);
         const inputContainer = document.getElementById(`input-${filter}`);
 
-        // arrowUp.addEventListener("click", (e) => {
-        //   e.preventDefault();
         toggle.classList.remove("none");
         inputContainer.classList.add("none");
         container.classList.remove("w-50");
-        // });
       }
     }
   }
 
   _closeDropdownByClickingInArrow() {
+    // const body = document.querySelector('body');
     for (let filter of filters) {
       const arrowUp = document.getElementById(`arrowUp-${filter}`);
       const container = document.getElementById(`container-${filter}`);
@@ -183,12 +231,11 @@ class HomeBuilder {
         container.classList.remove("w-50");
       });
     }
-
-    //tenter aussi de faire le click outside
-    // document.onclick = (e) => {
-
+    // console.log(body)
+    // //tenter aussi de faire le click outside
+    // body.onclick = () => {
     //   //faire en sorte que ça ne bloque pas le bouton lorsqu'elle est appelé.
-    //   // this._closeDropDownNotActive();
+    //   this._closeDropDownNotActive();
     // };
   }
 
@@ -198,6 +245,7 @@ class HomeBuilder {
       const toggle = document.getElementById(`toggle-${filter}`);
       const inputContainer = document.getElementById(`input-${filter}`);
       const input = document.getElementById(`${filter}`);
+      const arrowUp = document.getElementById(`arrowUp-${filter}`);
 
       toggle.addEventListener("click", (e) => {
         e.preventDefault();

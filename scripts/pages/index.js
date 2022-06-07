@@ -180,6 +180,9 @@ async function init() {
   const data = await api.get();
   // console.log(data)
   const dataFetched = new FetchData(data);
+  let input = document.getElementById("search-input");
+
+  console.log(input)
 
   const recipes = dataFetched.getRecipes();
   const tablesForRecipes = buildTableForSearchingRecipes(recipes);

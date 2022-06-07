@@ -21,7 +21,7 @@ class Recipes {
 
   get nameOfRecipes() {
     const nameList = [];
-    nameList.push(this.name.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+    nameList.push(normalizeValuesByRemovingAccents(this.name));
     const nameArray = nameList.join(" ");
     return nameArray;
   }
@@ -29,9 +29,7 @@ class Recipes {
   get ingredientsOfRecipes() {
     const ingredientsList = [];
     for (let item of this.ingredients) {
-      ingredientsList.push(
-        item.ingredient.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-      );
+      ingredientsList.push(normalizeValuesByRemovingAccents(item.ingredient));
     }
     const ingredientsArray = ingredientsList.join(" ");
     return ingredientsArray;
@@ -39,9 +37,7 @@ class Recipes {
 
   get appareilOfRecipes() {
     const appareilsList = [];
-    appareilsList.push(
-      this.appliance.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-    );
+    appareilsList.push(normalizeValuesByRemovingAccents(this.appliance));
     const appareilArray = appareilsList.join(" ");
     return appareilArray;
   }
@@ -50,9 +46,7 @@ class Recipes {
     const ustensilsList = [];
     for (let item of this.ustensils) {
       ustensilsList.push(
-        capitalizeFirstLetter(
-          item.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-        )
+        normalizeValuesByRemovingAccents(item)
       );
     }
     const ustensilsArray = ustensilsList.join(" ");
@@ -61,9 +55,7 @@ class Recipes {
 
   get descriptionOfRecipes() {
     const descriptionList = [];
-    descriptionList.push(
-      this.description.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-    );
+    descriptionList.push(normalizeValuesByRemovingAccents(this.description));
     const descriptionArray = descriptionList.join(" ");
     return descriptionArray;
   }
@@ -80,22 +72,24 @@ class ListOfRecipes {
       for (let item of recipe.ingredients)
         ingredients.add(capitalizeFirstLetter(item.ingredient));
     }
-    return [...ingredients];
+    return sortArrayAlphabetically([...ingredients]);
   }
   get allAppareils() {
     const appareil = new Set();
     for (let recipe of this.recipes) {
       appareil.add(capitalizeFirstLetter(recipe.appliance));
     }
-    return [...appareil];
+    return sortArrayAlphabetically([...appareil]);
   }
   get allUstensils() {
     const ustensils = new Set();
     for (let recipe of this.recipes) {
-      for (let ustensil of recipe.ustensils)
+      for (let ustensil of recipe.ustensils) {
         ustensils.add(capitalizeFirstLetter(ustensil));
+      }
     }
-    return [...ustensils];
+
+    return sortArrayAlphabetically([...ustensils]);
   }
 
   search(userDemand, tableForRecipes) {
@@ -104,9 +98,10 @@ class ListOfRecipes {
     const keywords = userDemand.trim().split(" ");
     let filteredRecipes = new Set(this.recipes);
     for (let keyword of keywords) {
-      keyword = keyword.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      keyword = normalizeValuesByRemovingAccents(keyword);
       let keywordsInRecipes;
       if (keyword in tableForRecipes) {
+        console.log(tableForRecipes[keyword])
         keywordsInRecipes = tableForRecipes[keyword];
       } else {
         keywordsInRecipes = new Set();

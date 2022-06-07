@@ -24,13 +24,15 @@ class FetchData {
   }
 }
 
+//Extrait les mots clès des recettes. 
 function extractKeywords(recipe) {
   let keywords = `${recipe.nameOfRecipes} ${recipe.ingredientsOfRecipes} ${recipe.appareilOfRecipes} ${recipe.ustensilsOfRecipes} ${recipe.descriptionOfRecipes}`;
   keywords = keywords.split(" ");
   return keywords;
 }
 
-function addKeywordsToTable(recipe, recipesKeywords, tableForRecipes) {
+//Ajoute les recettes en fonction des mots clès. 
+function addRecipesToTable(recipe, recipesKeywords, tableForRecipes) {
   for (let keyword of recipesKeywords) {
     for (let i = 1; i <= keyword.length; i++) {
       //coupe le tableau de mots clés pour permettre la recherche de chaque mots dans la table de recette
@@ -47,16 +49,27 @@ function addKeywordsToTable(recipe, recipesKeywords, tableForRecipes) {
   return tableForRecipes;
 }
 
+//Construit un objet qui pourra ainsi contenir tous les mots clès potentiel des recettes
 function buildTableForSearchingRecipes(recipesList) {
   let tableForRecipes = {};
   for (let recipe of recipesList.recipes) {
     const recipesKeywords = extractKeywords(recipe);
-    tableForRecipes = addKeywordsToTable(
+    tableForRecipes = addRecipesToTable(
       recipe,
       recipesKeywords,
       tableForRecipes
     );
   }
-  // console.log(tableForRecipes)
   return tableForRecipes;
+}
+
+function normalizeValuesByRemovingAccents(str){
+  let result = str.toLowerCase();
+  non_asciis = {'a': '[àáâãäå]', 'ae': 'æ', 'c': 'ç', 'e': '[èéêë]', 'i': '[ìíîï]', 'n': 'ñ', 'o': '[òóôõö]', 'oe': 'œ', 'u': '[ùúûűü]', 'y': '[ýÿ]'};
+  for (i in non_asciis) { result = result.replace(new RegExp(non_asciis[i], 'g'), i); }
+  return result;
+};
+
+function sortArrayAlphabetically(array){
+  return array.sort((a, b) => a.localeCompare(b))
 }
