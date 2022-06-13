@@ -110,23 +110,23 @@ class ListOfRecipes {
 
     return new ListOfRecipes([...filteredRecipes]);
   }
-  searchSecondAlgo(userDemand, tablesForRecipes) {
-    userDemand = `${userDemand.input} ${userDemand.tags}`;
+  // searchSecondAlgo(userDemand, tablesForRecipes) {
+  //   userDemand = `${userDemand.input} ${userDemand.tags}`;
 
-    const keywords = userDemand.trim().split(" ");
-    let filteredRecipes = new Set(this.recipes);
-    keywords.forEach((keyword) => {
-      keyword = normalizeValuesByRemovingAccents(keyword);
-      let keywordsInRecipes;
-      if (keyword in tablesForRecipes) {
-        keywordsInRecipes = tablesForRecipes[keyword];
-      } else {
-        keywordsInRecipes = new Set();
-      }
-      filteredRecipes = new Set(
-        [...keywordsInRecipes].filter((recipe) => filteredRecipes.has(recipe))
-      );
-    });
-    return new ListOfRecipes([...filteredRecipes]);
-  }
+  //   const keywords = userDemand.trim().split(" ");
+  //   let filteredRecipes = new Set(this.recipes);
+  //   keywords.forEach((keyword) => {
+  //     keyword = normalizeValuesByRemovingAccents(keyword);
+  //     let keywordsInRecipes;
+  //     if (keyword in tablesForRecipes) {
+  //       keywordsInRecipes = tablesForRecipes[keyword];
+  //     } else {
+  //       keywordsInRecipes = new Set();
+  //     }
+  //     filteredRecipes = new Set(
+  //       [...keywordsInRecipes].filter((recipe) => filteredRecipes.has(recipe))
+  //     );
+  //   });
+  //   return new ListOfRecipes([...filteredRecipes]);
+  // }
 }
