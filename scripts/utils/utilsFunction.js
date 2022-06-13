@@ -73,3 +73,7 @@ function normalizeValuesByRemovingAccents(str){
 function sortArrayAlphabetically(array){
   return array.sort((a, b) => a.localeCompare(b))
 }
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}

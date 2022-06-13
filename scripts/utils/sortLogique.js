@@ -45,9 +45,7 @@ class Recipes {
   get ustensilsOfRecipes() {
     const ustensilsList = [];
     for (let item of this.ustensils) {
-      ustensilsList.push(
-        normalizeValuesByRemovingAccents(item)
-      );
+      ustensilsList.push(normalizeValuesByRemovingAccents(item));
     }
     const ustensilsArray = ustensilsList.join(" ");
     return ustensilsArray;
@@ -92,7 +90,7 @@ class ListOfRecipes {
     return sortArrayAlphabetically([...ustensils]);
   }
 
-  search(userDemand, tableForRecipes) {
+  search(userDemand, tablesForRecipes) {
     userDemand = `${userDemand.input} ${userDemand.tags}`;
 
     const keywords = userDemand.trim().split(" ");
@@ -100,9 +98,8 @@ class ListOfRecipes {
     for (let keyword of keywords) {
       keyword = normalizeValuesByRemovingAccents(keyword);
       let keywordsInRecipes;
-      if (keyword in tableForRecipes) {
-        console.log(tableForRecipes[keyword])
-        keywordsInRecipes = tableForRecipes[keyword];
+      if (keyword in tablesForRecipes) {
+        keywordsInRecipes = tablesForRecipes[keyword];
       } else {
         keywordsInRecipes = new Set();
       }
@@ -111,6 +108,25 @@ class ListOfRecipes {
       );
     }
 
+    return new ListOfRecipes([...filteredRecipes]);
+  }
+  searchSecondAlgo(userDemand, tablesForRecipes) {
+    userDemand = `${userDemand.input} ${userDemand.tags}`;
+
+    const keywords = userDemand.trim().split(" ");
+    let filteredRecipes = new Set(this.recipes);
+    keywords.forEach((keyword) => {
+      keyword = normalizeValuesByRemovingAccents(keyword);
+      let keywordsInRecipes;
+      if (keyword in tablesForRecipes) {
+        keywordsInRecipes = tablesForRecipes[keyword];
+      } else {
+        keywordsInRecipes = new Set();
+      }
+      filteredRecipes = new Set(
+        [...keywordsInRecipes].filter((recipe) => filteredRecipes.has(recipe))
+      );
+    });
     return new ListOfRecipes([...filteredRecipes]);
   }
 }

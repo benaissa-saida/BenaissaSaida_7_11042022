@@ -32,9 +32,15 @@ class HomeBuilder {
     };
   }
 
+  focusOnMainSearchBar(){
+    let input = document.getElementById("search-input");
+    window.onload = input.focus()
+  }
+
   render() {
     this._displayFiltersOptions(this.itemsFiltered);
     this._displayCards(this.recipesList);
+    this.focusOnMainSearchBar()
     this._searchWithInput();
     this._openDropdown();
     this._closeDropdownByClickingInArrow();
@@ -154,39 +160,29 @@ class HomeBuilder {
     });
   }
 
-  _showMessageError(recipesToDisplay) {
-    const body = document.querySelector(".cards__container");
-
-    const recipesQuantity = recipesToDisplay.recipes.length;
-
-    if (recipesQuantity === 0) {
-      return (body.innerHTML = `<h1 class="text-center">Oups</h1>
-      <p class="text-center fs-4">Aucune recette ne correspond à votre critère… vous pouvez
-      chercher « tarte aux pommes », « poisson », etc.</p>`);
-    }
-  }
-
   _searchWithInput() {
     let input = document.getElementById("search-input");
     let searchIcon = document.getElementById("search-icon");
 
     //ferme les tags pour avoir seulement l'input
     input.onfocus = () => {
-      //faire en sorte que ça ne bloque pas le bouton lorsqu'elle est appelé.
       this._closeDropDownNotActive();
     };
 
     input.oninput = () => {
       let recipesToDisplay;
       if(input.value.length >= 3){
+        console.log('input')
         recipesToDisplay = this.displayRecipes()
-        this._showMessageError(recipesToDisplay)
+        console.log(recipesToDisplay.recipes.length)
+        // this._showMessageError(recipesToDisplay)
       } else if(this.listOfTags.length > 0){
+        console.log('tag')
         recipesToDisplay = this.recipesList.search({
           input: '',
           tags: this._userDemand.tags,
         }, this.tableForRecipes)
-        this._showMessageError(recipesToDisplay)
+        // this._showMessageError(recipesToDisplay)
       } else {
         recipesToDisplay = this.recipesList
       }
@@ -195,6 +191,7 @@ class HomeBuilder {
       this._displayFiltersOptions(this.displayListOfTags(recipesToDisplay));
       //avant d'afficher les cards
       this._displayCards(recipesToDisplay);
+      this._showMessageError(recipesToDisplay)
     }
     searchIcon.onclick = (e) => {
       e.preventDefault()
@@ -256,6 +253,19 @@ class HomeBuilder {
         container.classList.toggle("w-50");
         input.focus();
       });
+    }
+  }
+
+  _showMessageError(recipesToDisplay) {
+    const body = document.querySelector(".cards__container");
+
+    const recipesQuantity = recipesToDisplay.recipes.length;
+    console.log(recipesQuantity)
+
+    if (recipesQuantity === 0) {
+      body.insertAdjacentHTML('afterbegin', `<div class="d-flex flex-column justify-content-center w-100 text-center"><h1>Oups</h1>
+      <p class="fs-4">Aucune recette ne correspond à votre critère… vous pouvez
+      chercher « tarte aux pommes », « poisson », etc.</p></div>`)
     }
   }
 }
