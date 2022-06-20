@@ -264,8 +264,8 @@ class HomeBuilder {
 
     if (recipesQuantity === 0) {
       body.insertAdjacentHTML('afterbegin', `<div class="d-flex flex-column justify-content-center w-100 text-center"><h1>Oups</h1>
-      <p class="fs-4">Aucune recette ne correspond à votre critère… vous pouvez
-      chercher « tarte aux pommes », « poisson », etc.</p></div>`)
+      <p class="fs-4">Aucune recette ne correspond à votre critère… </p>
+      <p class="fs-4">Vous pouvez chercher « tarte aux pommes », « poisson », etc.</p></div>`)
     }
   }
 }
