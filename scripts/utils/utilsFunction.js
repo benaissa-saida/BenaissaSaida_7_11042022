@@ -26,7 +26,7 @@ class FetchData {
 
 //Extrait les mots clès des recettes. 
 function extractKeywords(recipe) {
-  let keywords = `${recipe.nameOfRecipes} ${recipe.ingredientsOfRecipes} ${recipe.descriptionOfRecipes}`;
+  let keywords = `${recipe.nameOfRecipes} ${recipe.ingredientsOfRecipes} ${recipe.appareilOfRecipes} ${recipe.ustensilsOfRecipes} ${recipe.descriptionOfRecipes}`;
   keywords = keywords.split(" ");
   return keywords;
 }
