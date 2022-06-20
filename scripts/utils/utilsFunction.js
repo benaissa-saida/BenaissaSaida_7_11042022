@@ -26,23 +26,43 @@ class FetchData {
 
 //Extrait les mots clès des recettes. 
 function extractKeywords(recipe) {
-  let keywords = `${recipe.nameOfRecipes} ${recipe.ingredientsOfRecipes} ${recipe.appareilOfRecipes} ${recipe.ustensilsOfRecipes} ${recipe.descriptionOfRecipes}`;
-  keywords = keywords.split(" ");
+  let keywordsSearchBar = `${recipe.nameOfRecipes} ${recipe.ingredientsOfRecipes} ${recipe.descriptionOfRecipes}`;
+  let keywordsTags = `${recipe.ingredientsOfRecipes} ${recipe.appareilOfRecipes} ${recipe.ustensilsOfRecipes}`
+  keywords = {
+    searchBar: keywordsSearchBar.split(" "),
+    tags: keywordsTags.split(" ")
+  };
   return keywords;
 }
 
 //Ajoute les recettes en fonction des mots clès. 
 function addRecipesToTable(recipe, recipesKeywords, tableForRecipes) {
-  for (let keyword of recipesKeywords) {
+  for (let keyword of recipesKeywords.searchBar) {
+    // console.log(keyword)
     for (let i = 1; i <= keyword.length; i++) {
       //coupe le tableau de mots clés pour permettre la recherche de chaque mots dans la table de recette
       const troncatedKeyword = keyword.slice(0, i);
-      if (troncatedKeyword in tableForRecipes) {
+      const searchBar = tableForRecipes.searchBar
+      if (troncatedKeyword in searchBar) {
         //si une suite de mot est trouvée alors ajouter la recette pour chaque mot clé. 
-        tableForRecipes[troncatedKeyword].add(recipe);
       } else {
-        //sinon il y a création d'un nouveau tableau dans la table  
-        tableForRecipes[troncatedKeyword] = new Set([recipe]);
+        // sinon il y a création d'un nouveau tableau dans la table  
+        searchBar[troncatedKeyword] = new Set([recipe]);
+      }
+    }
+  }
+  for (let keyword of recipesKeywords.tags) {
+    // console.log(keyword)
+    for (let i = 1; i <= keyword.length; i++) {
+      //coupe le tableau de mots clés pour permettre la recherche de chaque mots dans la table de recette
+      const troncatedKeyword = keyword.slice(0, i);
+      const tags = tableForRecipes.tags
+      if (troncatedKeyword in tags) {
+        //si une suite de mot est trouvée alors ajouter la recette pour chaque mot clé. 
+        tags[troncatedKeyword].add(recipe);
+      } else {
+        // sinon il y a création d'un nouveau tableau dans la table  
+        tags[troncatedKeyword] = new Set([recipe]);
       }
     }
   }
@@ -51,7 +71,10 @@ function addRecipesToTable(recipe, recipesKeywords, tableForRecipes) {
 
 //Construit un objet qui pourra ainsi contenir tous les mots clès potentiel des recettes
 function buildTableForSearchingRecipes(recipesList) {
-  let tableForRecipes = {};
+  let tableForRecipes = {
+    searchBar: {},
+    tags: {}
+  };
   for (let recipe of recipesList.recipes) {
     const recipesKeywords = extractKeywords(recipe);
     tableForRecipes = addRecipesToTable(
