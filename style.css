@@ -93,10 +93,10 @@ button p {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  justify-content: stretch;
+  justify-content: space-between;
 }
 .card-width {
-  width: 31%;
+  width: 30.5%;
   min-width: 300px !important;
 }
 .body-minWidth {
@@ -159,10 +159,10 @@ button p {
   text-overflow: ellipsis;
 }
 
-@media (max-width: 1499px) {
-  .cards__container {
+@media (max-width: 1200px) {
+  /* .cards__container {
     justify-content: space-between;
-  }
+  }  */
   .card-width {
     width: 45%;
     min-width: 300px !important;
