@@ -25,11 +25,11 @@ async function init() {
     }
   }
 
-  console.time('algo1');
-  testAlgoPerformance();
-  console.timeEnd('algo1');
-  console.time('algo2');
-  testAlgo2Performance();
-  console.timeEnd('algo2');
+  // console.time('algo1');
+  // testAlgoPerformance();
+  // console.timeEnd('algo1');
+  // console.time('algo2');
+  // // testAlgo2Performance();
+  // console.timeEnd('algo2');
 }
 init();

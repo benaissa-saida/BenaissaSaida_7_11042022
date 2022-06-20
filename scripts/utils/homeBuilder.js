@@ -20,8 +20,12 @@ class HomeBuilder {
     };
   }
 
-  displayRecipes() {
-    return this.recipesList.search(this._userDemand, this.tableForRecipes);
+  displayRecipesWithSearchBar() {
+    return this.recipesList.search(this._userDemand, this.tableForRecipes.searchBar);
+  }
+
+  displayRecipesWithTags() {
+    return this.recipesList.search(this._userDemand, this.tableForRecipes.tags);
   }
 
   displayListOfTags(recipesList) {
@@ -123,7 +127,7 @@ class HomeBuilder {
         this._closeTagAfterClickCross(arrayOfCrossTags, e.target.innerHTML);
 
         //crée une variable recipesToDisplay pour rechercher chaque recette après chaque clique
-        recipesToDisplay = this.displayRecipes();
+        recipesToDisplay = this.displayRecipesWithTags();
         //crée de nouveau tags sous les filtres contenus seulement dans les recettes affichées.
         this._displayFiltersOptions(this.displayListOfTags(recipesToDisplay));
         //affiche les nouvelles cards de recettes.
@@ -148,7 +152,7 @@ class HomeBuilder {
           recipesToDisplay = this.recipesList;
         } else {
           //sinon on va faire une nouvelle recherche des recettes pour avoir les recettes qui contiennent les mots clès
-          recipesToDisplay = this.displayRecipes();
+          recipesToDisplay = this.displayRecipesWithTags();
           this._showMessageError(recipesToDisplay);
         }
 
@@ -173,7 +177,7 @@ class HomeBuilder {
       let recipesToDisplay;
       if(input.value.length >= 3){
         console.log('input')
-        recipesToDisplay = this.displayRecipes()
+        recipesToDisplay = this.displayRecipesWithSearchBar()
         console.log(recipesToDisplay.recipes.length)
         // this._showMessageError(recipesToDisplay)
       } else if(this.listOfTags.length > 0){
@@ -181,7 +185,7 @@ class HomeBuilder {
         recipesToDisplay = this.recipesList.search({
           input: '',
           tags: this._userDemand.tags,
-        }, this.tableForRecipes)
+        }, this.tableForRecipes.tags)
         // this._showMessageError(recipesToDisplay)
       } else {
         recipesToDisplay = this.recipesList
