@@ -93,14 +93,17 @@ button p {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: stretch;
 }
 .card-width {
-  width: 30.5%;
+  width: 32%;
   min-width: 300px !important;
 }
 .body-minWidth {
   min-width: 300px;
+}
+.ingredient-list{
+  min-width: 160px;
 }
 .recipes {
   margin-top: 8em;
@@ -159,10 +162,10 @@ button p {
   text-overflow: ellipsis;
 }
 
-@media (max-width: 1200px) {
-  /* .cards__container {
+@media (max-width: 1400px) {
+  .cards__container {
     justify-content: space-between;
-  }  */
+  } 
   .card-width {
     width: 45%;
     min-width: 300px !important;

@@ -45,7 +45,7 @@ function cardFactory(data) {
                         </p>
                     </div>
                     <div class="row row-cols-2 pb-4 card__footer">
-                        <ul class="list-unstyled">
+                        <ul class="list-unstyled ingredient-list">
                             ${getAllRecipes()}
                         </ul>
                         <p class="card__footer--description">
