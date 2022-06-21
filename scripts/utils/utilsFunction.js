@@ -45,6 +45,7 @@ function addRecipesToTable(recipe, recipesKeywords, tableForRecipes) {
       const searchBar = tableForRecipes.searchBar
       if (troncatedKeyword in searchBar) {
         //si une suite de mot est trouvée alors ajouter la recette pour chaque mot clé. 
+        searchBar[troncatedKeyword].add(recipe);
       } else {
         // sinon il y a création d'un nouveau tableau dans la table  
         searchBar[troncatedKeyword] = new Set([recipe]);
