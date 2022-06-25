@@ -147,16 +147,15 @@ class HomeBuilder {
           //valeur de recipesToDisplay prends toutes les recettes
           recipesToDisplay = this.recipesList;
         } else {
-          console.log('yes', recipesToDisplay)
           //sinon on va faire une nouvelle recherche des recettes pour avoir les recettes qui contiennent les mots clès
           recipesToDisplay = this.displayRecipes();
-          this._showMessageError(recipesToDisplay);
         }
-
+        
         //on affiche ensuite les tags qui sont seulements contenus dans nos recettes restantes
         this._displayFiltersOptions(this.displayListOfTags(recipesToDisplay));
         //avant d'afficher les cards
         this._displayCards(recipesToDisplay);
+        this._showMessageError(recipesToDisplay);
       });
     });
   }
@@ -258,9 +257,8 @@ class HomeBuilder {
     const body = document.querySelector(".cards__container");
 
     const recipesQuantity = recipesToDisplay.recipes.length;
-    console.log(recipesQuantity)
 
-    if (recipesQuantity === 0 || recipesToDisplay === undefined) {
+    if (recipesQuantity === 0) {
       body.insertAdjacentHTML('afterbegin', `<div class="d-flex flex-column justify-content-center w-100 text-center"><h1>Oups</h1>
       <p class="fs-4">Aucune recette ne correspond à votre critère… </p>
       <p class="fs-4">Vous pouvez chercher « tarte aux pommes », « poisson », etc.</p></div>`)
