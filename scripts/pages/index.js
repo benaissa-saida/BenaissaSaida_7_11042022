@@ -8,28 +8,28 @@ async function init() {
 
   new HomeBuilder(recipes, tablesForRecipes).render();
 
-  const testUserRequest = {
-    input: "choco",
-    tags: "sucre beurre",
-  };
+  // const testUserRequest = {
+  //   input: "choco",
+  //   tags: "sucre beurre",
+  // };
 
-  function testAlgoPerformance() {
-    for (let i = 0; i < 100000; i++) {
-      recipes.search(testUserRequest, tablesForRecipes)
-    }
-  }
+  // function testAlgoPerformance() {
+  //   for (let i = 0; i < 100000; i++) {
+  //     recipes.search(testUserRequest, tablesForRecipes)
+  //   }
+  // }
 
-  function testAlgo2Performance() {
-    for (let i = 0; i < 100000; i++) {
-      recipes.searchSecondAlgo(testUserRequest, tablesForRecipes)
-    }
-  }
+  // function testAlgo2Performance() {
+  //   for (let i = 0; i < 100000; i++) {
+  //     recipes.searchSecondAlgo(testUserRequest, tablesForRecipes)
+  //   }
+  // }
 
-  console.time('algo1');
-  testAlgoPerformance();
-  console.timeEnd('algo1');
-  console.time('algo2');
-  testAlgo2Performance();
-  console.timeEnd('algo2');
+  // console.time('algo1');
+  // testAlgoPerformance();
+  // console.timeEnd('algo1');
+  // console.time('algo2');
+  // testAlgo2Performance();
+  // console.timeEnd('algo2');
 }
 init();
